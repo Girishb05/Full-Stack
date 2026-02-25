@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking Management System</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🏦 Banking Management System</h1>
+            <div class="user-info">Admin Dashboard</div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="nav-menu">
+                <a href="#" class="nav-item nav-link active" data-page="dashboard">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="#" class="nav-item nav-link" data-page="users">
+                    <span>👥</span> Users
+                </a>
+                <a href="#" class="nav-item nav-link" data-page="accounts">
+                    <span>💳</span> Accounts
+                </a>
+                <a href="#" class="nav-item nav-link" data-page="transactions">
+                    <span>💸</span> Transactions
+                </a>
+                <a href="#" class="nav-item nav-link" data-page="audit">
+                    <span>📋</span> Audit Logs
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section id="page-dashboard" class="page active">
+                <div class="dashboard-head">
+                    <h2 class="page-title">Dashboard</h2>
+                    <p class="page-subtitle">Quick overview and actions</p>
+                </div>
+
+                <div class="dashboard-layout">
+                    <!-- Left: overview + recent -->
+                    <div class="dashboard-left">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-info">
+                                    <h3>Total Users</h3>
+                                    <p class="stat-value" id="totalUsers">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💳</div>
+                                <div class="stat-info">
+                                    <h3>Total Accounts</h3>
+                                    <p class="stat-value" id="totalAccounts">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💸</div>
+                                <div class="stat-info">
+                                    <h3>Transactions</h3>
+                                    <p class="stat-value" id="totalTransactions">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-info">
+                                    <h3>Total Balance</h3>
+                                    <p class="stat-value" id="totalBalance">₹ 0</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-section">
+                            <div class="table-title-row">
+                                <h3>Recent Transactions</h3>
+                                <span class="hint">Showing latest 10</span>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="txnTableRecent"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: quick actions -->
+                    <div class="dashboard-right">
+                        <div class="panel">
+                            <h3 class="panel-title">Quick Actions</h3>
+
+                            <details class="action-accordion" open>
+                                <summary>💰 Deposit</summary>
+                                <div class="accordion-body">
+                                    <div class="form-group">
+                                        <label>Account Number</label>
+                                        <input type="text" id="depositAcc" placeholder="Enter account number" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="number" id="depositAmt" placeholder="Enter amount" />
+                                    </div>
+                                    <button id="depositBtn" class="btn btn-primary">Deposit</button>
+                                </div>
+                            </details>
+
+                            <details class="action-accordion">
+                                <summary>🏧 Withdraw</summary>
+                                <div class="accordion-body">
+                                    <div class="form-group">
+                                        <label>Account Number</label>
+                                        <input type="text" id="withdrawAcc" placeholder="Enter account number" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="number" id="withdrawAmt" placeholder="Enter amount" />
+                                    </div>
+                                    <button id="withdrawBtn" class="btn btn-primary">Withdraw</button>
+                                </div>
+                            </details>
+
+                            <details class="action-accordion">
+                                <summary>🔁 Transfer</summary>
+                                <div class="accordion-body">
+                                    <div class="form-group">
+                                        <label>From Account</label>
+                                        <input type="text" id="fromAcc" placeholder="From account number" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>To Account</label>
+                                        <input type="text" id="toAcc" placeholder="To account number" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="number" id="transferAmt" placeholder="Enter amount" />
+                                    </div>
+                                    <button id="transferBtn" class="btn btn-primary">Transfer</button>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Page -->
+            <section id="page-users" class="page">
+                <div class="page-header">
+                    <h2 class="page-title">User Management</h2>
+                    <button id="refreshUsersBtn" class="btn btn-secondary">Refresh</button>
+                </div>
+                
+                <div class="content-layout">
+                    <div class="form-section">
+                        <div class="form-card">
+                            <h3>Create New Customer</h3>
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="customerName" placeholder="Enter full name" />
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="customerEmail" placeholder="Enter email address" />
+                            </div>
+                            <div class="form-group">
+                                <label>Password (Optional)</label>
+                                <input type="password" id="customerPassword" placeholder="Temporary password" />
+                            </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select id="customerRole">
+                                    <option value="CUSTOMER" selected>Customer</option>
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="TELLER">Teller</option>
+                                </select>
+                            </div>
+                            <button id="createCustomerBtn" class="btn btn-primary">Create Customer</button>
+                            <div id="createCustomerMsg" class="message"></div>
+                        </div>
+                    </div>
+
+                    <div class="table-section">
+                        <h3>All Users</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accounts Page -->
+            <section id="page-accounts" class="page">
+                <div class="page-header">
+                    <h2 class="page-title">Account Management</h2>
+                    <div class="header-actions">
+                        <button id="resequenceAccountsBtn" class="btn btn-secondary">Resequence</button>
+                        <button id="refreshAccountsBtn" class="btn btn-secondary">Refresh</button>
+                    </div>
+                </div>
+                
+                <div class="table-section">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Account Number</th>
+                                    <th>Balance</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accountsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Page -->
+            <section id="page-transactions" class="page">
+                <div class="page-header">
+                    <h2 class="page-title">Transaction History</h2>
+                    <button id="refreshTransactionsBtn" class="btn btn-secondary">Refresh</button>
+                </div>
+                
+                <div class="table-section">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="txnTableAll"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Audit Logs Page -->
+            <section id="page-audit" class="page">
+                <div class="page-header">
+                    <h2 class="page-title">Audit Logs</h2>
+                    <button id="refreshAuditBtn" class="btn btn-secondary">Refresh</button>
+                </div>
+                
+                <div class="table-section">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User</th>
+                                    <th>Action</th>
+                                    <th>IP Address</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div id="confirmModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+            <h3 id="modalTitle">Confirm</h3>
+            <p id="modalMessage">Are you sure?</p>
+            <div class="modal-actions">
+                <button type="button" id="modalCancel" class="btn btn-secondary">Cancel</button>
+                <button type="button" id="modalConfirm" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
