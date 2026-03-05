@@ -1,0 +1,16 @@
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/filter/ApiFilter.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/model/OrderItem.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/servlet/CartServlet.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/servlet/AuthServlet.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/util/DBConnection.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/servlet/OrderServlet.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/dao/OrderDAO.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/model/Product.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/servlet/ProductServlet.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/model/CartItem.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/dao/ProductDAO.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/dao/CartDAO.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/model/Category.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/model/Order.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/dao/UserDAO.java
+/Users/manojkumar/.gemini/antigravity/scratch/ShopEase/src/main/java/com/shopease/model/User.java
